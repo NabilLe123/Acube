@@ -15,6 +15,10 @@ class InsertFragmentVM internal constructor(
     var etStockName = ObservableField("")
     var etStockCost = ObservableField("")
 
+    fun logout(view: View) {
+        Misc.reLogin(mContext.getString(R.string.logout_successful), mContext)
+    }
+
     fun onSubmit(view: View) {
         Log.d("rxjava", etStockName.get() + " : " + etStockCost.get())
 
@@ -37,5 +41,7 @@ class InsertFragmentVM internal constructor(
             )
             RoomDbInstance.getAppDb(mContext).stockDao().insertStock(stock)
         }.start()
+
+        Misc.showAlert(mContext, mContext.getString(R.string.stock_added))
     }
 }

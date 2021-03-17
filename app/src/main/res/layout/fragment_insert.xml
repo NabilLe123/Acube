@@ -58,6 +58,17 @@
                 android:padding="@dimen/main_spacing_big"
                 android:text="@string/submit" />
 
+            <Button
+                style="@style/MyButtonBold"
+                android:layout_marginStart="@dimen/main_spacing_big"
+                android:layout_marginEnd="@dimen/main_spacing_big"
+                android:layout_marginBottom="@dimen/main_spacing_big"
+                android:backgroundTint="@color/colorAccent"
+                android:includeFontPadding="false"
+                android:onClick="@{insertFragmentVM::logout}"
+                android:padding="@dimen/main_spacing_big"
+                android:text="@string/logout" />
+
         </LinearLayout>
 
     </ScrollView>

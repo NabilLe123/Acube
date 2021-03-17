@@ -1,15 +1,20 @@
 package com.app.acube.auth
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.ObservableField
+import com.app.acube.MainActivity
 import com.app.acube.R
 import com.app.acube.api.ApiClient
 import com.app.acube.api.ApiInterface
+import com.app.acube.helper.AuthSharedPref
+import com.app.acube.helper.CustomLoadingPb
 import com.app.acube.helper.Misc
+import com.app.acube.model.Login
 import com.app.acube.model.LoginRequestEnvelope
 import com.app.acube.model.LoginRequestModel
 import com.app.acube.model.LoginResponseEnvelope
@@ -36,8 +41,8 @@ class SignInActivityVM internal constructor(
     }
 
     private fun loginUser() {
-//        val customLoadingPb = CustomLoadingPb(mContext)
-//        customLoadingPb.show()
+        val customLoadingPb = CustomLoadingPb(mContext)
+        customLoadingPb.show()
 
         val loginParams = LoginRequestModel.LoginParams()
         loginParams.username = etUsername.get()!!.trim()
@@ -63,43 +68,41 @@ class SignInActivityVM internal constructor(
                 call: Call<LoginResponseEnvelope?>,
                 response: Response<LoginResponseEnvelope?>
             ) {
-                val movieResponse: LoginResponseEnvelope? = response.body()
-                if (movieResponse != null) {
-                    Log.d(
-                        "now_showing",
-                        ": " + movieResponse.loginResponseBody!!.loginResponseModel!!.login!!.isSuccess() +
-                                " : " + movieResponse.loginResponseBody!!.loginResponseModel!!.login!!.getEmployeeCode()
-                    )
-                } else Log.d("now_showing", "loadMovies: null")
+                loadingFinish(customLoadingPb)
+
+                val loginResponseEnvelope: LoginResponseEnvelope? = response.body()
+                if (loginResponseEnvelope != null) {
+                    onLoginSuccess(loginResponseEnvelope.loginResponseBody!!.loginResponseModel!!.login!!)
+
+                } else {
+                    Misc.showAlert(mContext, mContext.getString(R.string.server_error_retry))
+                }
             }
 
             override fun onFailure(call: Call<LoginResponseEnvelope?>, t: Throwable) {
-                Log.d("now_showing", "loadMovies: " + t.message)
-                Toast.makeText(
-                    mContext,
-                    "Something went wrong...Please try later!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Log.d("acube", "onFailure: " + t.message)
+                loadingFinish(customLoadingPb)
+                Misc.showAlert(mContext, mContext.getString(R.string.server_error_retry))
             }
         })
     }
 
-//    fun onLoginSuccess(login: Login) {
-//        AuthPrefReference.getAuthSharedPref(mContext)!!
-//            .insertLoginDetails(login.id, login.name, login.email, login.isVerified, login.token)
-//
-//        if (login.isVerified == "1") {
-//            val intent = Intent(mContext, MainActivity::class.java)
-//            mContext.startActivity(intent)
-//            (mContext as Activity).finish()
-//        } else {
-//            val intent = Intent(mContext, EnterMobileActivity::class.java)
-//            mContext.startActivity(intent)
-//            (mContext as Activity).finish()
-//        }
-//    }
-//
-//    fun loadingFinish(customLoadingPb: CustomLoadingPb) {
-//        customLoadingPb.dismiss()
-//    }
+    fun onLoginSuccess(login: Login) {
+        Log.d("acube", ": " + login.success + " : " + login.employeeCode)
+
+        if (login.success == true) {
+            val authPrefReference = AuthSharedPref(mContext)
+            authPrefReference.insertLoginDetails(login.employeeCode!!, "")
+
+            val intent = Intent(mContext, MainActivity::class.java)
+            mContext.startActivity(intent)
+            (mContext as Activity).finish()
+        } else if (!TextUtils.isEmpty(login.errorMessage)) {
+            Misc.showAlert(mContext, login.errorMessage!!)
+        }
+    }
+
+    fun loadingFinish(customLoadingPb: CustomLoadingPb) {
+        customLoadingPb.dismiss()
+    }
 }

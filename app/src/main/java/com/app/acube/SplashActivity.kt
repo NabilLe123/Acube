@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (authSharedPref.getEmployeeCode() == -1) {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

@@ -3,18 +3,13 @@ package com.app.acube.helper
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.app.acube.auth.SignInActivity
 
 object Misc {
 
-    fun isEmailValid(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    fun showToast(context: Context?, msg: String?) {
+    private fun showToast(context: Context?, msg: String?) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 

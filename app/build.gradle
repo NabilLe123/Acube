@@ -64,6 +64,8 @@ dependencies {
     //Room DB
     implementation 'androidx.room:room-runtime:2.2.6'
     kapt 'androidx.room:room-compiler:2.2.6'
+    //search spinner
+    implementation 'com.github.MdFarhanRaja:SearchableSpinner:2.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

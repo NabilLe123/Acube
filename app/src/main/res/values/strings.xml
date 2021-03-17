@@ -4,6 +4,7 @@
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
+    <string name="logout">Logout</string>
     <string name="invalid_credentials">Invalid credentials! Please enter a valid username/password!!</string>
     <string name="insert">Insert</string>
     <string name="display">Display</string>
@@ -12,4 +13,10 @@
     <string name="stock_cost">Stock Cost</string>
     <string name="pls_enter_stock_name">Please enter Stock Name</string>
     <string name="pls_enter_stock_cost">Please enter Stock Cost</string>
+    <string name="no_stock">No stocks available. Please insert a stock.</string>
+    <string name="select_stock">Select Stock</string>
+    <string name="server_error_retry">Sorry! A server error occurred. Please retry!</string>
+    <string name="please_wait">Loading! Please Wait!</string>
+    <string name="logout_successful">Logout Successful</string>
+    <string name="stock_added">Successfully added a new stock</string>
 </resources>
