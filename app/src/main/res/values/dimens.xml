@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_spacing">10dp</dimen>
+    <dimen name="main_spacing_big">20dp</dimen>
+    <dimen name="main_spacing_small">5dp</dimen>
+    <dimen name="main_text">15sp</dimen>
+    <dimen name="main_text_big">19sp</dimen>
+    <dimen name="main_text_small">12sp</dimen>
+    <dimen name="logo_wt">180dp</dimen>
+    <dimen name="logo_ht">90dp</dimen>
+    <dimen name="bnv_height">60dp</dimen>
+</resources>

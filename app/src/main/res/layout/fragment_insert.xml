@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="insertFragmentVM"
+            type="com.app.acube.InsertFragmentVM" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/main_spacing_big">
+
+            <TextView
+                style="@style/MyTextView"
+                android:layout_marginTop="@dimen/main_spacing_big"
+                android:text="@string/insert_stock_details"
+                android:textSize="@dimen/main_text_big"
+                android:textStyle="bold" />
+
+            <EditText
+                style="@style/MyEditText"
+                android:layout_marginStart="@dimen/main_spacing_big"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="@dimen/main_spacing_big"
+                android:hint="@string/stock_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:text="@={insertFragmentVM.etStockName}" />
+
+            <EditText
+                style="@style/MyEditText"
+                android:layout_margin="@dimen/main_spacing_big"
+                android:digits="0123456789"
+                android:hint="@string/stock_cost"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:text="@={insertFragmentVM.etStockCost}" />
+
+            <Button
+                style="@style/MyButtonBold"
+                android:layout_margin="@dimen/main_spacing_big"
+                android:backgroundTint="@color/colorAccent"
+                android:includeFontPadding="false"
+                android:onClick="@{insertFragmentVM::onSubmit}"
+                android:padding="@dimen/main_spacing_big"
+                android:text="@string/submit" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Acube</string>
+    <string name="username">Username</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="invalid_credentials">Invalid credentials! Please enter a valid username/password!!</string>
+    <string name="insert">Insert</string>
+    <string name="display">Display</string>
+    <string name="insert_stock_details">Insert Stock Details</string>
+    <string name="stock_name">Stock Name</string>
+    <string name="stock_cost">Stock Cost</string>
+    <string name="pls_enter_stock_name">Please enter Stock Name</string>
+    <string name="pls_enter_stock_cost">Please enter Stock Cost</string>
+</resources>

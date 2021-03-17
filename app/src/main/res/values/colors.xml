@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fafbff</color>
+    <color name="colorPrimaryDark">#fafbff</color>
+    <color name="colorAccent">#ff8a65</color>
+    <color name="main_text">#344356</color>
+    <color name="second_text">#667384</color>
+    <color name="hint_text">#C3C8CD</color>
+    <color name="main_bg">#fafbff</color>
+    <color name="bnv_bg">#ffffff</color>
+    <color name="bnv_selected">#162947</color>
+    <color name="bnv_unselected">#acacac</color>
+</resources>
