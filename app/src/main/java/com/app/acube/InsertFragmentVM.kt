@@ -20,7 +20,7 @@ class InsertFragmentVM internal constructor(
     }
 
     fun onSubmit(view: View) {
-        Log.d("rxjava", etStockName.get() + " : " + etStockCost.get())
+        Log.d("acube", etStockName.get() + " : " + etStockCost.get())
 
         when {
             TextUtils.isEmpty(etStockName.get().toString().trim()) ->
@@ -29,19 +29,18 @@ class InsertFragmentVM internal constructor(
             TextUtils.isEmpty(etStockCost.get().toString().trim()) ->
                 Misc.showAlert(mContext, mContext.getString(R.string.pls_enter_stock_cost))
 
-            else -> insertData()
+            else -> insertData(etStockName.get().toString(), etStockCost.get().toString().trim())
         }
     }
 
-    private fun insertData() {
+    private fun insertData(stockName: String, stockCost: String) {
         Thread {
-            val stock = Stock(
-                etStockName.get().toString(),
-                etStockCost.get().toString().trim()
-            )
+            val stock = Stock(stockName, stockCost)
             RoomDbInstance.getAppDb(mContext).stockDao().insertStock(stock)
         }.start()
 
+        etStockName.set("")
+        etStockCost.set("")
         Misc.showAlert(mContext, mContext.getString(R.string.stock_added))
     }
 }

@@ -29,7 +29,7 @@ class SignInActivityVM internal constructor(
     var etPassword = ObservableField("")
 
     fun onSubmit(view: View) {
-        Log.d("rxjava", etUsername.get() + " : " + etPassword.get())
+        Log.d("acube", etUsername.get() + " : " + etPassword.get())
 
         if (TextUtils.isEmpty(etUsername.get().toString().trim())
             ||
